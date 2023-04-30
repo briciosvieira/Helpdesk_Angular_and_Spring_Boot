@@ -1,6 +1,7 @@
 package com.helpdesk.resources;
 
 import com.helpdesk.models.Technician;
+import com.helpdesk.models.dto.TechnicianDTO;
 import com.helpdesk.services.TechnicianService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,9 +20,9 @@ public class TechnicianResource {
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<Technician> findById(@PathVariable Integer id){
+    public ResponseEntity<TechnicianDTO> findById(@PathVariable Integer id){
         Technician obj = service.findById(id);
-        return ResponseEntity.ok().body(obj);
+        return ResponseEntity.ok().body(new TechnicianDTO(obj));
 
     }
 }
