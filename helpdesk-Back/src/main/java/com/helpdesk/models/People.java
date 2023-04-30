@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.helpdesk.enuns.Perfil;
 import jakarta.persistence.*;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.HashSet;
@@ -13,6 +14,7 @@ import java.util.stream.Collectors;
 
 @Entity
 public abstract class People implements Serializable {
+    @Serial
     private static final long serialVersionUID =1L;
 
     @Id
