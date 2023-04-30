@@ -1,22 +1,34 @@
 package com.helpdesk.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.helpdesk.enuns.Priority;
 import com.helpdesk.enuns.Status;
+import jakarta.persistence.*;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
-
-public class Called {
-
+@Entity
+public class Called implements Serializable {
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String title;
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate initialDate = LocalDate.now();
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate finishDate;
     private Priority priority;
     private Status status;
     private String observation;
 
+    @ManyToOne
+    @JoinColumn(name = "client_id")
     private Client client;
+
+    @ManyToOne
+    @JoinColumn(name = "technician_id")
     private Technician technician;
 
     public Called() {
