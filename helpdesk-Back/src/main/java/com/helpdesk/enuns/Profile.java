@@ -1,12 +1,12 @@
 package com.helpdesk.enuns;
 
-public enum Perfil {
+public enum Profile {
     ADMIN(0, "ROLE_ADMIN"), CLIENTE(1,"ROLE_CLIENTE"), TECNICO(2,"ROLE_TECNICO");
 
     private Integer id;
     private String description;
 
-    Perfil(Integer id, String description) {
+    Profile(Integer id, String description) {
         this.id = id;
         this.description = description;
     }
@@ -19,16 +19,16 @@ public enum Perfil {
         return description;
     }
 
-    public static Perfil toEnum(Integer cod){
+    public static Profile toEnum(Integer cod){
         if (cod == null){
             return null;
         }
 
-        for (Perfil x : Perfil.values()){
+        for (Profile x : Profile.values()){
             if (cod.equals(x.getId())){
                 return x;
             }
         }
-        throw new IllegalArgumentException("Perfil não existe !");
+        throw new IllegalArgumentException("Profile não existe !");
     }
 }

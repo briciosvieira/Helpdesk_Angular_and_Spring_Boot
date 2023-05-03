@@ -1,6 +1,6 @@
 package com.helpdesk.services;
 
-import com.helpdesk.enuns.Perfil;
+import com.helpdesk.enuns.Profile;
 import com.helpdesk.enuns.Priority;
 import com.helpdesk.enuns.Status;
 import com.helpdesk.models.Called;
@@ -28,7 +28,7 @@ public class DBService  {
     public void instanceDB(){
 
         Technician tc1 = new Technician( null,"Fabricio","06679735599","123","fabricio@test.com");
-        tc1.addPerfis(Perfil.ADMIN);
+        tc1.addProfile(Profile.ADMIN);
 
         Client cl1 = new Client(null,"Caio","06679735587","123","caio@test");
 

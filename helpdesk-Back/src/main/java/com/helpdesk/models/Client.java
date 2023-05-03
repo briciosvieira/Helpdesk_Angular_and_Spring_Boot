@@ -1,7 +1,7 @@
 package com.helpdesk.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.helpdesk.enuns.Perfil;
+import com.helpdesk.enuns.Profile;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 
@@ -18,12 +18,12 @@ public class Client extends People implements Serializable {
 
     public Client() {
         super();
-        addPerfis(Perfil.CLIENTE);
+        addProfile(Profile.CLIENTE);
     }
 
     public Client(Integer id, String name, String cpf, String password, String email) {
         super(id, name, cpf, password, email);
-        addPerfis(Perfil.CLIENTE);
+        addProfile(Profile.CLIENTE);
     }
 
     public List<Called> getCalleds() {

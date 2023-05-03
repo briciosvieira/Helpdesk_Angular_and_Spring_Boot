@@ -1,7 +1,7 @@
 package com.helpdesk.models;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.helpdesk.enuns.Perfil;
+import com.helpdesk.enuns.Profile;
 import jakarta.persistence.*;
 
 import java.io.Serial;
@@ -27,14 +27,13 @@ public abstract class People implements Serializable {
     @Column(unique = true)
     protected String email;
     @ElementCollection(fetch = FetchType.EAGER)
-    @CollectionTable(name = "PERFIS")
-    protected Set<Integer> perfis = new HashSet<>();
+    protected Set<Integer> profiles = new HashSet<>();
     @JsonFormat(pattern = "dd/MM/yyyy")
     protected LocalDate dateResgister = LocalDate.now();
 
     public People() {
         super();
-        addPerfis(Perfil.CLIENTE);
+        addProfile(Profile.CLIENTE);
     }
 
     public People(Integer id, String name, String cpf, String password, String email) {
@@ -43,7 +42,7 @@ public abstract class People implements Serializable {
         this.cpf = cpf;
         this.password = password;
         this.email = email;
-        addPerfis(Perfil.CLIENTE);
+        addProfile(Profile.CLIENTE);
     }
 
     public Integer getId() {
@@ -86,12 +85,12 @@ public abstract class People implements Serializable {
         this.email = email;
     }
 
-    public Set<Perfil> getPerfis() {
-        return perfis.stream().map(x-> Perfil.toEnum(x)).collect(Collectors.toSet());
+    public Set<Profile> getPerfis() {
+        return profiles.stream().map(x-> Profile.toEnum(x)).collect(Collectors.toSet());
     }
 
-    public void addPerfis(Perfil perfil) {
-        this.perfis.add(perfil.getId());
+    public void addProfile(Profile profile) {
+        this.profiles.add(profile.getId());
     }
 
     public LocalDate getDateResgister() {

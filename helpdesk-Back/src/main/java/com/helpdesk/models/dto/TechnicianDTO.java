@@ -1,7 +1,7 @@
 package com.helpdesk.models.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.helpdesk.enuns.Perfil;
+import com.helpdesk.enuns.Profile;
 import com.helpdesk.models.People;
 import com.helpdesk.models.Technician;
 import java.io.Serial;
@@ -20,15 +20,14 @@ public class TechnicianDTO extends People implements Serializable {
     protected String cpf;
     protected String password;
     protected String email;
-    protected Set<Integer> perfis = new HashSet<>();
+    protected Set<Integer> profiles = new HashSet<>();
     @JsonFormat(pattern = "dd/MM/yyyy")
     protected LocalDate dateResgister = LocalDate.now();
 
 
     public TechnicianDTO() {
-
         super();
-
+        addProfile(Profile.CLIENTE);
     }
 
     public TechnicianDTO(Technician obj) {
@@ -37,8 +36,9 @@ public class TechnicianDTO extends People implements Serializable {
         this.cpf = obj.getCpf();
         this.password = obj.getPassword();
         this.email = obj.getEmail();
-        this.perfis = obj.getPerfis().stream().map(x->x.getId()).collect(Collectors.toSet());
+        this.profiles = obj.getPerfis().stream().map(x->x.getId()).collect(Collectors.toSet());
         this.dateResgister = obj.getDateResgister();
+        addProfile(Profile.CLIENTE);
     }
 
     @Override
@@ -92,13 +92,11 @@ public class TechnicianDTO extends People implements Serializable {
     }
 
     @Override
-    public Set<Perfil> getPerfis() {
-        return perfis.stream().map(x-> Perfil.toEnum(x)).collect(Collectors.toSet());
+    public Set<Profile> getPerfis() {
+        return profiles.stream().map(x-> Profile.toEnum(x)).collect(Collectors.toSet());
     }
 
-    public void setPerfis(Set<Integer> perfis) {
-        this.perfis = perfis;
-    }
+  public void addProfile(Profile profile) {this.profiles.add(profile.getId());}
 
     @Override
     public LocalDate getDateResgister() {
